@@ -1,5 +1,6 @@
 package com.vinod.saga.choreography.customer.service.impl;
 
+import com.vinod.saga.choreography.customer.event.CustomerCreatedEvent;
 import com.vinod.saga.choreography.customer.model.Customer;
 import com.vinod.saga.choreography.customer.repository.CustomerRepository;
 import com.vinod.saga.choreography.customer.service.ICustomerService;
@@ -15,6 +16,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerCreatedEvent customerCreatedEvent;
 
     /**
      * Add new customer.
@@ -26,6 +29,7 @@ public class CustomerServiceImpl implements ICustomerService {
     public Customer addCustomer(Customer customer) {
         log.trace("Request came to add new customer : {}",customer);
         Customer persistedCustomer=customerRepository.save(customer);
+        customerCreatedEvent.raiseEventForNewCustomerCreated(customer);
         log.trace("Successfully saved customer object and persisted object: {}",persistedCustomer);
         return persistedCustomer;
     }

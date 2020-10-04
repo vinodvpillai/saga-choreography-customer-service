@@ -122,7 +122,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- End Test -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <!-- End Test -->
 
 	</dependencies>
 
