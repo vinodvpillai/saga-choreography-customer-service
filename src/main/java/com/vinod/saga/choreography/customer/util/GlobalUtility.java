@@ -65,4 +65,19 @@ public class GlobalUtility {
         }
         return null;
     }
+
+    public static ObjectMapper getDateFormatObjectMapper() {
+        try {
+            JavaTimeModule javaTimeModule=new JavaTimeModule();
+            javaTimeModule.addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer(DateTimeFormatter.ISO_DATE_TIME));
+            return Jackson2ObjectMapperBuilder.json().modules(javaTimeModule).featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS).build();
+        } catch (Exception e) {
+            log.error("Error generated while creating object for object mapper for date format: {}", ExceptionUtils.getRootCauseMessage(e));
+        }
+        return null;
+    }
+
+    public static boolean isNotNull(Object object) {
+        return object!=null && !"".equals(object);
+    }
 }

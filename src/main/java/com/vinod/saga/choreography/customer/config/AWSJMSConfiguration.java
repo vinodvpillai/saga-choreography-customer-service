@@ -26,6 +26,7 @@ import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
 @Configuration
 @ComponentScan(basePackages = {"com.vinod.saga.choreography.customer"})
+@EnableJms
 public class AWSJMSConfiguration {
 
     private String accessKey="accessKey";
