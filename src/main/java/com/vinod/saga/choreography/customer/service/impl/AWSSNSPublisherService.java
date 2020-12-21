@@ -1,15 +1,17 @@
 package com.vinod.saga.choreography.customer.service.impl;
 
 import com.amazonaws.services.sns.AmazonSNSClient;
-import com.amazonaws.services.sns.model.*;
+import com.amazonaws.services.sns.model.CreateTopicResult;
+import com.amazonaws.services.sns.model.PublishRequest;
+import com.amazonaws.services.sns.model.PublishResult;
 import com.vinod.saga.choreography.customer.service.IPublisherService;
 import com.vinod.saga.choreography.customer.util.GlobalUtility;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@Log4j2
+@Slf4j
 public class AWSSNSPublisherService implements IPublisherService {
 
     @Autowired

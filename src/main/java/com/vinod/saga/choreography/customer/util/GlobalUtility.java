@@ -2,20 +2,18 @@ package com.vinod.saga.choreography.customer.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.ResponseEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Log4j2
 public class GlobalUtility {
@@ -75,6 +73,20 @@ public class GlobalUtility {
             log.error("Error generated while creating object for object mapper for date format: {}", ExceptionUtils.getRootCauseMessage(e));
         }
         return null;
+    }
+
+    public static Long reformatId(String str) {
+        str=str.substring(1,str.length());
+        int i = 0;
+        while (i < str.length() && str.charAt(i) == '0') {
+            i++;
+        }
+        return Long.parseLong(new StringBuffer(str).replace(0, i, "").toString());
+    }
+
+    public static String formatId(String str, char ch, int leadingZeros) {
+        String customerId = StringUtils.leftPad(str, leadingZeros, '0');
+        return new StringBuilder(customerId).insert(0, ch).toString();
     }
 
     public static boolean isNotNull(Object object) {

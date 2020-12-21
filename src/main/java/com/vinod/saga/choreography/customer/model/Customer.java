@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,18 +13,16 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Log4j2
+@Slf4j
 @Entity
-@Table(name="customer",schema = "saga-customer")
+@Table(name="customer",schema = "saga-choreography-customer")
 public class Customer {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String firstName;
-    @Column
-    private String lastName;
+    private String name;
     @Column
     private String emailId;
     @Column
@@ -32,9 +30,9 @@ public class Customer {
     @Column
     private String address;
     @Column
-    private Integer maxCreditLimit;
+    private BigDecimal maxCreditLimit;
     @Column
-    private Integer currentCreditLimit;
+    private BigDecimal currentCreditLimit;
     @Column
-    private boolean status;
+    private String status;
 }

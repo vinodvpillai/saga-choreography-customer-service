@@ -48,13 +48,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- End DB, MySQL -->
-
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
-
+		<!-- End DB, MySQL -->
 
 		<!--JMS, AWS SNS, AWS SQS -->
 		<dependency>
@@ -85,6 +83,11 @@
 		<!--JMS, AWS SNS, AWS SQS -->
 
 		<!-- General -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.5</version>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
